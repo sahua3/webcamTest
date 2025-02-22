@@ -9,7 +9,7 @@
     <a-assets>
       <video id="webcam" playsinline></video>
     </a-assets>
-    <a-sky material="src: #webcam"></a-sky>
+    <a-plane id="video-bg" position="0 1.6 -5" width="16" height="9" material="src: #webcam"></a-plane>
     <!> placeholder spheres
     <a-entity id="sphere-container"></a-entity>
     <!> camera
@@ -28,6 +28,14 @@
         video.play();
       };
     })
+
+    //set as plane?
+    function adjustAspectRatio(video) {
+      let plane = document.getElementById("video-bg");
+      let ratio = video.videoWidth / video.videoHeight;
+      plane.setAttribute("width", 10 * ratio);
+      plane.setAttribute("height", 10);
+    }
 
     // sphere generation (placeholder)
     //TODO: generate them statically around user after testing on mobile
