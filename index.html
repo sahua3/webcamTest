@@ -11,7 +11,7 @@
     </a-assets>
     <!-- camera -->
     <a-camera position="0 1.6 0">
-      <!-- video attached to cam -->
+      <!-- Attach the video plane to the camera -->
       <a-entity id="video-bg" geometry="primitive: plane; width: 1; height: 2" 
                 material="src: #webcam" position="0 0 -1" rotation="0 0 0"></a-entity>
     </a-camera>
@@ -41,13 +41,14 @@
     }
 
     // sphere generation (placeholder)
-    //TODO: generate them statically around user after testing on mobile
+    // will probably be static generation of each model once im done
     const container = document.getElementById("sphere-container");
     for (let i = 0; i < 10; i++) {
       let sphere = document.createElement("a-sphere");
       sphere.setAttribute("radius", "0.5");
+      // Position spheres in front of the video plane (z > -1)
       sphere.setAttribute("position", 
-        `${Math.random() * 10 - 5} ${Math.random() * 5 + 2} ${Math.random() * -10}`);
+        `${Math.random() * 10 - 5} ${Math.random() * 5 + 2} ${Math.random() * 5 + 1}`); // z > -1
       sphere.setAttribute("color", `hsl(${Math.random() * 360}, 100%, 50%)`);
       container.appendChild(sphere);
     }
