@@ -9,7 +9,7 @@
     <a-assets>
       <video id="webcam" playsinline></video>
     </a-assets>
-    <a-plane id="video-bg" position="0 1.6 -5" width="16" height="9" material="src: #webcam"></a-plane>
+    <a-sphere id="video-bg" radius="10" position="0 1.6 0" material="src: #webcam; side: back;"></a-sphere>
     <!> placeholder spheres
     <a-entity id="sphere-container"></a-entity>
     <!> camera
@@ -31,10 +31,11 @@
 
     //set as plane?
     function adjustAspectRatio(video) {
-      let plane = document.getElementById("video-bg");
+      let sphere = document.getElementById("video-bg");
       let ratio = video.videoWidth / video.videoHeight;
-      plane.setAttribute("width", 10 * ratio);
-      plane.setAttribute("height", 10);
+
+      // Adjust the sphere's scale based on the aspect ratio
+      sphere.setAttribute("scale", `${ratio} 1 1`);
     }
 
     // sphere generation (placeholder)
