@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <!> webcam
+    <a-assets>
+      <video id="webcam" playsinline></video>
+    </a-assets>
+    <a-sky material="src: #webcam"></a-sky>
+    <!> placeholder spheres
+    <a-entity id="sphere-container"></a-entity>
+    <!> camera
+    <a-camera position="0 1.6 0"></a-camera>
+  </a-scene>
+
+  <script>
+    // TODO: alter for phone support?
+    navigator.mediaDevices.getUserMedia({audio: false, video: true})
+  .then(stream => {
+    let $video = document.querySelector('video')
+    $video.srcObject = stream
+    $video.onloadedmetadata = () => {
+      $video.play()
+    }
+  })
+
+    // sphere generation (placeholder)
+    //TODO: generate them statically around user after testing on mobile
+    const container = document.getElementById("sphere-container");
+    for (let i = 0; i < 10; i++) {
+      let sphere = document.createElement("a-sphere");
+      sphere.setAttribute("radius", "0.5");
+      sphere.setAttribute("position", 
+        `${Math.random() * 10 - 5} ${Math.random() * 5 + 2} ${Math.random() * -10}`);
+      sphere.setAttribute("color", `hsl(${Math.random() * 360}, 100%, 50%)`);
+      container.appendChild(sphere);
+    }
+  </script>
+</body>
+</html>
