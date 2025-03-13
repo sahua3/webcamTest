@@ -20,7 +20,6 @@
   </a-scene>
 
   <script>
-    // TODO: alter for phone support?
     navigator.mediaDevices.getUserMedia({ 
       video: { facingMode: { exact: "environment" } } 
     })
@@ -53,6 +52,11 @@
       sphere.setAttribute("color", `hsl(${Math.random() * 360}, 100%, 50%)`);
       container.appendChild(sphere);
     }
+    let sphereNew = document.createElement("a-sphere");
+      sphereNew.setAttribute("radius", "0.5");
+      // Position spheres in front of the video plane (z > -1)
+      sphereNew.setAttribute("position", 
+        `${3} ${3} ${fixedZ}`);
   </script>
 </body>
 </html>
