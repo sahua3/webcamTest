@@ -6,6 +6,9 @@
 <body>
   <a-scene>
     <!-- theres only so much soul one can have with the webcam -->
+    
+    <!-- placeholders -->
+    <a-entity id="sphere-container"></a-entity>
     <a-assets>
       <video id="webcam" playsinline></video>
     </a-assets>
@@ -13,10 +16,8 @@
     <a-camera position="0 1.6 0">
       <!-- Attach the video plane to the camera -->
       <a-entity id="video-bg" geometry="primitive: plane; width: 1; height: 2" 
-                material="src: #webcam" position="0 0 -1" rotation="0 0 0"></a-entity>
+                material="src: #webcam" position="0 0 -2" rotation="0 0 0"></a-entity>
     </a-camera>
-    <!-- placeholders -->
-    <a-entity id="sphere-container"></a-entity>
   </a-scene>
 
   <script>
@@ -39,24 +40,21 @@
       plane.setAttribute("geometry", `primitive: plane; width: ${2 * aspectRatio}; height: 2`);
     }
 
-    // sphere generation (placeholder)
-    // will probably be static generation of each model once im done
+    // Static sphere generation
     const container = document.getElementById("sphere-container");
     const fixedZ = 1;
-    for (let i = 0; i < 10; i++) {
+    const sphereRadius = 0.5;
+    const sphereSpacing = 2; // Spacing between spheres
+
+    for (let i = 0; i < 5; i++) {
       let sphere = document.createElement("a-sphere");
-      sphere.setAttribute("radius", "0.5");
-      // Position spheres in front of the video plane (z > -1)
+      sphere.setAttribute("radius", sphereRadius);
+      // Position spheres in a line along the x-axis
       sphere.setAttribute("position", 
-        `${Math.random() * 10 - 5} ${Math.random() * 5 + 2} ${fixedZ}`);
-      sphere.setAttribute("color", `hsl(${Math.random() * 360}, 100%, 50%)`);
+        `${(i - 2) * sphereSpacing} 1.6 ${fixedZ}`); // Centered around x=0
+      sphere.setAttribute("color", `hsl(${(i / 5) * 360}, 100%, 50%)`);
       container.appendChild(sphere);
     }
-    let sphereNew = document.createElement("a-sphere");
-      sphereNew.setAttribute("radius", "0.5");
-      // Position spheres in front of the video plane (z > -1)
-      sphereNew.setAttribute("position", 
-        `${3} ${3} ${fixedZ}`);
   </script>
 </body>
 </html>
