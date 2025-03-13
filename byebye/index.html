@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <!-- theres only so much soul one can have with the webcam -->
+    
+    <!-- placeholders -->
+    <a-sky =""></a-sky>
+    <!> placeholder spheres
+    <a-entity id="sphere-container"></a-entity>
+    <!> camera
+    <a-camera position="0 1.6 0"></a-camera>
+    <a-entity id="sphere-container"></a-entity>
+    
+    
+  </a-scene>
+
+  <script>
+    
+
+    // Static sphere generation
+    const container = document.getElementById("sphere-container");
+    const fixedZ = 1;
+    const sphereRadius = 0.2;
+    const sphereSpacing = 1; // Spacing between spheres
+
+    for (let i = 0; i < 5; i++) {
+      let sphere = document.createElement("a-sphere");
+      sphere.setAttribute("radius", sphereRadius);
+      // Position spheres in a line along the x-axis
+      sphere.setAttribute("position", 
+        `${(i - 2) * sphereSpacing} 3 ${fixedZ}`); // Centered around x=0
+      sphere.setAttribute("color", `hsl(${(i / 5) * 360}, 100%, 50%)`);
+      container.appendChild(sphere);
+    }
+  </script>
+</body>
+</html>
