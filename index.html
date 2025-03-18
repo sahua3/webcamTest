@@ -1,43 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-      </head>
+<head>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <style>
+        /* Style for the popup */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 2px solid black;
+            z-index: 1000;
+            text-align: center;
+        }
+    </style>
+</head>
 <body>
     <a-scene>
-        <a-sky color="#87CEEB"></a-sky>
+        <a-sky color="#000000"></a-sky>
         <a-camera position="0 1.6 0">
             <a-cursor></a-cursor>
         </a-camera>
-        <a-entity raycaster="objects: .clickable" cursor></a-entity>
+        <a-entity raycaster="objects: [data-raycastable]" cursor></a-entity>
         <a-entity camera look-controls>
             <a-entity cursor="fuse: true; fuseTimeout: 500"
                       position="0 0 0">
             </a-entity>
         </a-entity>
-          
-          <a-entity class="clickable"id="box" cursor-listener geometry="primitive: sphere; radius: 1" material="color: pink" visible="true"></a-entity>
+
+        <a-light type="ambient" color="#FFF" intensity="0.5"></a-light>
+
+        <!-- obj1 -->
+        <a-entity id="object1" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: pink" position="-2 1.5 -3" visible="true" data-text="obj1">
+          <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
+        </a-entity>
+
+        <!-- 2 -->
+        <a-entity id="object2" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: blue" position="0 1.5 -3" visible="true" data-text="obj2">
+          <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
+        </a-entity>
+
+        <!-- 3 -->
+        <a-entity id="object3" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: green" position="2 1.5 -3" visible="true" data-text="obj3">
+          <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
+        </a-entity>
+
+        <!-- 4 -->
+        <a-entity id="object4" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: yellow" position="-2 1.5 -5" visible="true" data-text="obj4">
+          <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
+        </a-entity>
+
+        <!-- 5 -->
+        <a-entity id="object5" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: purple" position="2 1.5 -5" visible="true" data-text="obj5">
+          <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
+        </a-entity>
+
+        <a-text id="found-text" value="Found: 0" position="-1.5 2 -3" color="white" align="center"></a-text>
     </a-scene>
+
+    <!-- popup -->
+    <div id="popup">
+        <p id="popup-text"></p>
+        <button onclick="document.getElementById('popup').style.display = 'none';">Close</button>
+    </div>
+
+    <div id="completion-popup" class="popup">
+      <p>yipee</p>
+      <button onclick="document.getElementById('completion-popup').style.display = 'none';">Close</button>
+  </div>
+
     <script>
-      AFRAME.registerComponent('cursor-listener', {
-        init: function () {
-          var lastIndex = -1;
-          var COLORS = ['red', 'green', 'blue'];
-          this.el.addEventListener('click', function (evt) {
-            if(this.getAttribute('visible') == true){
-                found+= 5;
+      var found = 0;
+        AFRAME.registerComponent('cursor-listener', {
+            init: function () {
+                this.el.addEventListener('click', function (evt) {
+                    if (this.getAttribute('visible') == true) {
+                        found++;
+
+                        document.querySelector('#found-text').setAttribute('value', 'Found: ' + found);
+                        var objectText = this.getAttribute('data-text');
+
+                        // displays text
+                        document.getElementById('popup-text').innerText = objectText;
+                        document.getElementById('popup').style.display = 'block';
+
+                        this.setAttribute('visible', false);
+                        
+                        if (found == 5) {
+                          document.getElementById('completion-popup').style.display = 'block';
+                      }
+                    }
+                });
             }
-            this.setAttribute('visible', false);
-            console.log('I was clicked at: ', evt.detail.intersection.point);
-            console.log('found value is ', found);
-          });
-        }
-      });
-        var found = 0;
-        while(found != 5){
-          
-        }
-        console.log('finished ', found);
-        </script>
-    </body>
+        });
+    </script>
+</body>
 </html>
