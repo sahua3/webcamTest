@@ -3,7 +3,7 @@
 <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
     <style>
-        /* Style for the popup */
+        /* popup */
         #popup {
             display: none;
             position: fixed;
@@ -21,7 +21,7 @@
 <body>
     <a-scene>
         <a-sky color="#000000"></a-sky>
-        <a-camera position="0 1.6 0">
+        <a-camera id="camera" position="0 1.6 0">
             <a-cursor></a-cursor>
         </a-camera>
         <a-entity raycaster="objects: [data-raycastable]" cursor></a-entity>
@@ -59,6 +59,16 @@
         </a-entity>
 
         <a-text id="found-text" value="Found: 0" position="-1.5 2 -3" color="white" align="center"></a-text>
+
+        <!-- congrats panel -->
+        <a-entity id="congrats-panel" visible="false">
+            <!-- black panel -->
+            <a-plane id="panel" position="0 1.6 -2" width="4" height="3" color="#000000"></a-plane>
+            <a-text id="congrats-text-line1" value="Congratulations!" position="0 2.3 -1.9" color="white" align="center" scale="1.2 1.2 1.2"></a-text>
+            <a-text id="congrats-text-line2" value="You found all 5 objects used to measure Psyche!" position="0 1.8 -1.9" color="white" align="center" scale="1 1 1"></a-text>
+            <a-text id="congrats-text-line3" value="Thank you so much for playing." position="0 1.3 -1.9" color="white" align="center" scale="1 1 1"></a-text>
+            <a-text id="congrats-text-line4" value="To read more on the Psyche mission, please visit https://psyche.asu.edu" position="0 0.8 -1.9" color="white" align="center" scale="1 1 1"></a-text>
+        </a-entity>
     </a-scene>
 
     <!-- popup -->
@@ -70,7 +80,7 @@
     <div id="completion-popup" class="popup">
       <p>yipee</p>
       <button onclick="document.getElementById('completion-popup').style.display = 'none';">Close</button>
-  </div>
+    </div>
 
     <script>
       var found = 0;
@@ -90,11 +100,52 @@
                         this.setAttribute('visible', false);
                         
                         if (found == 5) {
-                          document.getElementById('completion-popup').style.display = 'block';
-                      }
+                            document.getElementById('completion-popup').style.display = 'block';
+
+                            var congratsPanel = document.getElementById('congrats-panel');
+                            congratsPanel.setAttribute('visible', true);
+
+                            var camera = document.getElementById('camera');
+                            var cameraPosition = camera.getAttribute('position');
+                            var cameraRotation = camera.getAttribute('rotation');
+
+                            // calc position from camera
+                            var distance = 2;
+                            var rad = THREE.Math.degToRad(cameraRotation.y);
+                            var x = cameraPosition.x - Math.sin(rad) * distance;
+                            var z = cameraPosition.z - Math.cos(rad) * distance;
+
+                            // text
+                            var panel = document.getElementById('panel');
+                            var line1 = document.getElementById('congrats-text-line1');
+                            var line2 = document.getElementById('congrats-text-line2');
+                            var line3 = document.getElementById('congrats-text-line3');
+                            var line4 = document.getElementById('congrats-text-line4');
+                            panel.setAttribute('position', {x: x, y: cameraPosition.y, z: z});
+                            line1.setAttribute('position', {x: x, y: cameraPosition.y + 0.7, z: z - 0.1});
+                            line2.setAttribute('position', {x: x, y: cameraPosition.y + 0.2, z: z - 0.1});
+                            line3.setAttribute('position', {x: x, y: cameraPosition.y - 0.3, z: z - 0.1});
+                            line3.setAttribute('position', {x: x, y: cameraPosition.y - 0.6, z: z - 0.1});
+                        }
                     }
                 });
             }
+        });
+
+        // random generation
+        function getRandomPosition() {
+            var x = (Math.random() - 0.5) * 10;
+            var y = Math.random() * 5 + 2;
+            var z = (Math.random() - 0.5) * 10; 
+            return {x: x, y: y, z: z};
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var spheres = document.querySelectorAll('[id^="object"]');
+            spheres.forEach(function(sphere) {
+                var pos = getRandomPosition();
+                sphere.setAttribute('position', pos);
+            });
         });
     </script>
 </body>
