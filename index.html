@@ -24,9 +24,11 @@
         <a-camera id="camera" position="0 1.6 0">
             <a-cursor></a-cursor>
         </a-camera>
-        <a-entity raycaster="objects: [data-raycastable]" cursor></a-entity>
+        <a-entity raycaster="objects: [data-raycastable]; far: 20; interval: 100" cursor></a-entity>
         <a-entity camera look-controls>
-            <a-entity cursor="fuse: true; fuseTimeout: 500"
+          <a-entity cursor="fuse: true; fuseTimeout: 500"
+                      geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                      material="color: white; shader: flat"
                       position="0 0 0">
             </a-entity>
         </a-entity>
@@ -34,41 +36,42 @@
         <a-light type="ambient" color="#FFF" intensity="0.5"></a-light>
 
         <!-- obj1 -->
-        <a-entity id="object1" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: pink" position="-2 1.5 -3" visible="true" data-text="obj1">
+        <a-entity id="object1" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: pink" position="-2 1.5 -3" visible="true" data-text="obj1" data-popup-text="spr1<br>test 2nd line">
           <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 2 -->
-        <a-entity id="object2" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: blue" position="0 1.5 -3" visible="true" data-text="obj2">
+        <a-entity id="object2" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: blue" position="0 1.5 -3" visible="true" data-text="obj2" data-popup-text="spr2<br>test 2nd line">
           <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 3 -->
-        <a-entity id="object3" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: green" position="2 1.5 -3" visible="true" data-text="obj3">
+        <a-entity id="object3" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: green" position="2 1.5 -3" visible="true" data-text="obj3" data-popup-text="spr3<br>test 2nd line">
           <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 4 -->
-        <a-entity id="object4" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: yellow" position="-2 1.5 -5" visible="true" data-text="obj4">
+        <a-entity id="object4" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: yellow" position="-2 1.5 -5" visible="true" data-text="obj4" data-popup-text="spr4<br>test 2nd line">
           <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 5 -->
-        <a-entity id="object5" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: purple" position="2 1.5 -5" visible="true" data-text="obj5">
+        <a-entity id="object5" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: purple" position="2 1.5 -5" visible="true" data-text="obj5" data-popup-text="spr5<br>test 2nd line">
           <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
+        <!-- test, TO BE REMOVED -->
         <a-text id="found-text" value="Found: 0" position="-1.5 2 -3" color="white" align="center"></a-text>
 
         <!-- congrats panel -->
         <a-entity id="congrats-panel" visible="false">
-            <!-- black panel -->
-            <a-plane id="panel" position="0 1.6 -2" width="4" height="3" color="#000000"></a-plane>
-            <a-text id="congrats-text-line1" value="Congratulations!" position="0 2.3 -1.9" color="white" align="center" scale="1.2 1.2 1.2"></a-text>
-            <a-text id="congrats-text-line2" value="You found all 5 objects used to measure Psyche!" position="0 1.8 -1.9" color="white" align="center" scale="1 1 1"></a-text>
-            <a-text id="congrats-text-line3" value="Thank you so much for playing." position="0 1.3 -1.9" color="white" align="center" scale="1 1 1"></a-text>
-            <a-text id="congrats-text-line4" value="To read more on the Psyche mission, please visit https://psyche.asu.edu" position="0 0.8 -1.9" color="white" align="center" scale="1 1 1"></a-text>
-        </a-entity>
+          <!-- black panel -->
+          <a-plane id="panel" position="0 1.6 -2" width="4" height="3" color="#000000"></a-plane>
+          <a-text id="congrats-text-line1" value="Congratulations!" position="0 2.3 -1.9" color="white" align="center" scale="1.2 1.2 1.2"></a-text>
+          <a-text id="congrats-text-line2" value="You found all 5 objects used to measure Psyche!" position="0 1.8 -1.9" color="white" align="center" scale="1 1 1"></a-text>
+          <a-text id="congrats-text-line3" value="Thank you so much for playing." position="0 1.3 -1.9" color="white" align="center" scale="1 1 1"></a-text>
+          <a-text id="congrats-text-line4" value="To read more on the Psyche mission, please visit https://psyche.asu.edu" position="0 0.8 -1.9" color="white" align="center" scale="1 1 1"></a-text>
+      </a-entity>
     </a-scene>
 
     <!-- popup -->
@@ -84,6 +87,7 @@
 
     <script>
       var found = 0;
+      //CLICK
         AFRAME.registerComponent('cursor-listener', {
             init: function () {
                 this.el.addEventListener('click', function (evt) {
@@ -91,10 +95,10 @@
                         found++;
 
                         document.querySelector('#found-text').setAttribute('value', 'Found: ' + found);
-                        var objectText = this.getAttribute('data-text');
+                        var popupText = this.getAttribute('data-popup-text');
 
-                        // displays text
-                        document.getElementById('popup-text').innerText = objectText;
+                        // displays multiline
+                        document.getElementById('popup-text').innerHTML = popupText;
                         document.getElementById('popup').style.display = 'block';
 
                         this.setAttribute('visible', false);
@@ -109,28 +113,76 @@
                             var cameraPosition = camera.getAttribute('position');
                             var cameraRotation = camera.getAttribute('rotation');
 
-                            // calc position from camera
-                            var distance = 2;
+                            var distance = 5;
                             var rad = THREE.Math.degToRad(cameraRotation.y);
                             var x = cameraPosition.x - Math.sin(rad) * distance;
                             var z = cameraPosition.z - Math.cos(rad) * distance;
 
-                            // text
+                            // Update panel and text positions
                             var panel = document.getElementById('panel');
                             var line1 = document.getElementById('congrats-text-line1');
                             var line2 = document.getElementById('congrats-text-line2');
                             var line3 = document.getElementById('congrats-text-line3');
-                            var line4 = document.getElementById('congrats-text-line4');
                             panel.setAttribute('position', {x: x, y: cameraPosition.y, z: z});
                             line1.setAttribute('position', {x: x, y: cameraPosition.y + 0.7, z: z - 0.1});
                             line2.setAttribute('position', {x: x, y: cameraPosition.y + 0.2, z: z - 0.1});
                             line3.setAttribute('position', {x: x, y: cameraPosition.y - 0.3, z: z - 0.1});
-                            line3.setAttribute('position', {x: x, y: cameraPosition.y - 0.6, z: z - 0.1});
                         }
                     }
                 });
             }
         });
+
+        //TOUCH
+        AFRAME.registerComponent('cursor-listener', {
+          init: function () {
+              var el = this.el;
+              var handleClick = function () {
+                  if (el.getAttribute('visible') == true) {
+                      found++;
+      
+                      document.querySelector('#found-text').setAttribute('value', 'Found: ' + found);
+                      var popupText = el.getAttribute('data-popup-text');
+      
+                      document.getElementById('popup-text').innerHTML = popupText;
+                      document.getElementById('popup').style.display = 'block';
+      
+                      el.setAttribute('visible', false);
+      
+                      if (found == 5) {
+                          document.getElementById('completion-popup').style.display = 'block';
+      
+                          var congratsPanel = document.getElementById('congrats-panel');
+                          congratsPanel.setAttribute('visible', true);
+      
+                          var camera = document.getElementById('camera');
+                          var cameraPosition = camera.getAttribute('position');
+                          var cameraRotation = camera.getAttribute('rotation');
+      
+                          // Calculate position 5 units in front of the camera
+                          var distance = 5; // Distance in front of the camera (pushed back)
+                          var rad = THREE.Math.degToRad(cameraRotation.y); // Convert degrees to radians
+                          var x = cameraPosition.x - Math.sin(rad) * distance;
+                          var z = cameraPosition.z - Math.cos(rad) * distance;
+      
+                          // Update panel and text positions
+                          var panel = document.getElementById('panel');
+                          var line1 = document.getElementById('congrats-text-line1');
+                          var line2 = document.getElementById('congrats-text-line2');
+                          var line3 = document.getElementById('congrats-text-line3');
+                          panel.setAttribute('position', {x: x, y: cameraPosition.y, z: z});
+                          line1.setAttribute('position', {x: x, y: cameraPosition.y + 0.7, z: z - 0.1});
+                          line2.setAttribute('position', {x: x, y: cameraPosition.y + 0.2, z: z - 0.1});
+                          line3.setAttribute('position', {x: x, y: cameraPosition.y - 0.3, z: z - 0.1});
+                      }
+                  }
+              };
+      
+              // Add both click and touchstart events
+              el.addEventListener('click', handleClick);
+              el.addEventListener('touchstart', handleClick);
+          }
+      });
 
         // random generation
         function getRandomPosition() {
