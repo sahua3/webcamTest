@@ -24,11 +24,9 @@
         <a-camera id="camera" position="0 1.6 0">
             <a-cursor></a-cursor>
         </a-camera>
-        <a-entity raycaster="objects: [data-raycastable]; far: 20; interval: 100" cursor></a-entity>
+        <a-entity raycaster="objects: [data-raycastable]" cursor></a-entity>
         <a-entity camera look-controls>
-          <a-entity cursor="fuse: true; fuseTimeout: 500"
-                      geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                      material="color: white; shader: flat"
+            <a-entity cursor="fuse: true; fuseTimeout: 500"
                       position="0 0 0">
             </a-entity>
         </a-entity>
@@ -87,7 +85,6 @@
 
     <script>
       var found = 0;
-      //CLICK
         AFRAME.registerComponent('cursor-listener', {
             init: function () {
                 this.el.addEventListener('click', function (evt) {
@@ -118,7 +115,7 @@
                             var x = cameraPosition.x - Math.sin(rad) * distance;
                             var z = cameraPosition.z - Math.cos(rad) * distance;
 
-                            // Update panel and text positions
+                            // panel
                             var panel = document.getElementById('panel');
                             var line1 = document.getElementById('congrats-text-line1');
                             var line2 = document.getElementById('congrats-text-line2');
@@ -132,57 +129,6 @@
                 });
             }
         });
-
-        //TOUCH
-        AFRAME.registerComponent('cursor-listener', {
-          init: function () {
-              var el = this.el;
-              var handleClick = function () {
-                  if (el.getAttribute('visible') == true) {
-                      found++;
-      
-                      document.querySelector('#found-text').setAttribute('value', 'Found: ' + found);
-                      var popupText = el.getAttribute('data-popup-text');
-      
-                      document.getElementById('popup-text').innerHTML = popupText;
-                      document.getElementById('popup').style.display = 'block';
-      
-                      el.setAttribute('visible', false);
-      
-                      if (found == 5) {
-                          document.getElementById('completion-popup').style.display = 'block';
-      
-                          var congratsPanel = document.getElementById('congrats-panel');
-                          congratsPanel.setAttribute('visible', true);
-      
-                          var camera = document.getElementById('camera');
-                          var cameraPosition = camera.getAttribute('position');
-                          var cameraRotation = camera.getAttribute('rotation');
-      
-                          // Calculate position 5 units in front of the camera
-                          var distance = 5; // Distance in front of the camera (pushed back)
-                          var rad = THREE.Math.degToRad(cameraRotation.y); // Convert degrees to radians
-                          var x = cameraPosition.x - Math.sin(rad) * distance;
-                          var z = cameraPosition.z - Math.cos(rad) * distance;
-      
-                          // Update panel and text positions
-                          var panel = document.getElementById('panel');
-                          var line1 = document.getElementById('congrats-text-line1');
-                          var line2 = document.getElementById('congrats-text-line2');
-                          var line3 = document.getElementById('congrats-text-line3');
-                          panel.setAttribute('position', {x: x, y: cameraPosition.y, z: z});
-                          line1.setAttribute('position', {x: x, y: cameraPosition.y + 0.7, z: z - 0.1});
-                          line2.setAttribute('position', {x: x, y: cameraPosition.y + 0.2, z: z - 0.1});
-                          line3.setAttribute('position', {x: x, y: cameraPosition.y - 0.3, z: z - 0.1});
-                      }
-                  }
-              };
-      
-              // Add both click and touchstart events
-              el.addEventListener('click', handleClick);
-              el.addEventListener('touchstart', handleClick);
-          }
-      });
 
         // random generation
         function getRandomPosition() {
