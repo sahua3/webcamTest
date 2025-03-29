@@ -2,7 +2,18 @@
 <html lang="en">
 <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-obj-loader-component@3.2.1/dist/aframe-obj-loader-component.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
+        /*background????*/
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: url('assets/starspt2.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
         /* popup */
         #popup {
             display: none;
@@ -10,17 +21,146 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border: 2px solid black;
+            background-color: rgba(20, 20, 30, 0.95);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #4CAF50;
             z-index: 1000;
             text-align: center;
+            font-family: 'Exo 2', sans-serif;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+        }
+        
+        #popup p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        #popup button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        #popup button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        
+        /* panels */
+        #intro-panel, #completion-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(10, 10, 20, 0.95);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 700px;
+            z-index: 1001;
+            border: 1px solid #FFD700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            font-family: 'Exo 2', sans-serif;
+        }
+        
+        #intro-panel h1, #completion-panel h1 {
+            margin-top: 0;
+            color: #FFD700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        #intro-panel p, #completion-panel p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        #intro-panel button, #completion-panel button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2em;
+            margin: 20px 0 0;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+        
+        #intro-panel button:hover, #completion-panel button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
+        }
+        
+        #completion-panel {
+            display: none;
+        }
+        
+        #completion-panel a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        
+        .completion-images {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1002;
+        }
+    
+        .completion-image {
+            width: 50px;
+            height: auto;
+            transition: transform 0.3s ease;
         }
     </style>
 </head>
 <body>
-    <a-scene>
-        <a-sky color="#000000"></a-sky>
+    <div id="intro-panel">
+        <h1>Psyche Space Hunt</h1>
+        <p>Welcome to the Psyche Mission interactive experience!</p>
+        <p>Your mission is to find and click on all 6 objects scattered in this space. Each sphere represents an important instrument used to study the asteroid Psyche.</p>
+        <p>When you find an object, click on it to learn more about the instrument it represents.</p>
+        <p>Find all 6 to complete the challenge and learn about NASA's exciting mission to explore a metal-rich asteroid!</p>
+        <button id="begin-button">BEGIN MISSION</button>
+    </div>
+
+    <div id="completion-panel">
+        <h1>Mission Complete!</h1>
+        <p>Congratulations! You've found all 6 instruments used to study the asteroid Psyche!</p>
+        <p>Thank you for participating in this interactive experience.</p>
+        <p>To learn more about the Psyche mission, please visit:</p>
+        <p><a href="https://psyche.asu.edu" target="_blank">https://psyche.asu.edu</a></p>
+        <button id="play-again-button">PLAY AGAIN</button>
+        <div class="completion-images">
+            <img src="assets/Psyche_BadgeOutline_Color-PNG.png" alt="Psyche Mission Badge" class="completion-image">
+            <img src="assets/NASA-Logo-Large.png" alt="NASA 'meatball' logo" class="completion-image">
+        </div>
+    </div>
+
+    <a-scene loading-screen="dotsColor: white; backgroundColor: black">
+        <a-sky color="black" visible="false"></a-sky>
         <a-camera id="camera" position="0 1.6 0">
             <a-cursor></a-cursor>
         </a-camera>
@@ -31,120 +171,168 @@
             </a-entity>
         </a-entity>
 
+        //asteroid user standing on 
+        <a-assets>
+            <a-asset-item id="psyche" src="assets/PSYCHE_20170116_DEC.obj"></a-asset-item>
+        </a-assets>
+
+        <a-entity id="#psyche-asteroid"
+            obj-model="obj: #psyche"
+            position="0 0 0"
+            scale=".5 .5 .5"
+            rotation="0 0 0">
+            <a-entity light="type: point; intensity: 1; color: white" position="6 2 -4"></a-entity>
+        </a-entity>
+
         <a-light type="ambient" color="#FFF" intensity="0.5"></a-light>
 
         <!-- obj1 -->
-        <a-entity id="object1" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: pink" position="-2 1.5 -3" visible="true" data-text="obj1" data-popup-text="spr1<br>test 2nd line">
+        <a-entity id="object1" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: pink" position="-2 1.5 -3" visible="false" data-text="obj1" data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University.">
           <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 2 -->
-        <a-entity id="object2" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: blue" position="0 1.5 -3" visible="true" data-text="obj2" data-popup-text="spr2<br>test 2nd line">
+        <a-entity id="object2" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: blue" position="0 1.5 -3" visible="false" data-text="obj2" data-popup-text="PSYCHE GAMMA-RAY AND NEUTRON SPECTROMETER<br><br>The Gamma-Ray and Neutron Spectrometer will detect, measure, and map Psyche's elemental composition. The instrument is mounted on a 6-foot (2-meter) boom to distance the sensors from background radiation created by energetic particles interacting with the spacecraft and to provide an unobstructed field of view. The team is based at the Applied Physics Laboratory at Johns Hopkins University.">
           <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 3 -->
-        <a-entity id="object3" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: green" position="2 1.5 -3" visible="true" data-text="obj3" data-popup-text="spr3<br>test 2nd line">
+        <a-entity id="object3" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: green" position="2 1.5 -3" visible="false" data-text="obj3" data-popup-text="PSYCHE MAGNETOMETER<br><br>The Psyche Magnetometer is designed to detect and measure the remanent magnetic field of the asteroid. It is composed of two identical high-sensitivity magnetic field sensors located at the middle and outer end of a 6-foot (2-meter) boom. The team is based at Massachusetts Institute of Technology and Technical University of Denmark (DTU).">
           <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 4 -->
-        <a-entity id="object4" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: yellow" position="-2 1.5 -5" visible="true" data-text="obj4" data-popup-text="spr4<br>test 2nd line">
+        <a-entity id="object4" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: yellow" position="-2 1.5 -5" visible="false" data-text="obj4" data-popup-text="RADIO SCIENCE<br><br>The Psyche mission will use the X-band radio telecommunications system to measure Psyche's gravity field to high precision. When combined with topography derived from onboard imagery, this will provide information on the interior structure of Psyche. The team is based at Massachusetts Institute of Technology and the Jet Propulsion Laboratory.">
           <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 5 -->
-        <a-entity id="object5" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: purple" position="2 1.5 -5" visible="true" data-text="obj5" data-popup-text="spr5<br>test 2nd line">
+        <a-entity id="object5" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: purple" position="2 1.5 -5" visible="false" data-text="obj5" data-popup-text="DEEP SPACE OPTICAL COMMUNICATION (DSOC)<br><br>The Psyche mission will test a sophisticated new laser communication technology that encodes data in photons (rather than radio waves) to communicate between a probe in deep space and Earth. Using light instead of radio allows the spacecraft to communicate more data in a given amount of time. The DSOC team is based at the Jet Propulsion Laboratory.">
           <a-light type="point" color="pink" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
-        <!-- test, TO BE REMOVED -->
-        <a-text id="found-text" value="Found: 0" position="-1.5 2 -3" color="white" align="center"></a-text>
+        <!-- 6 -->
+        <a-entity id="object6" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: orange" position="0 1.5 -5" visible="false" data-text="obj6" data-popup-text="PSYCHE SPACECRAFT<br><br>The Psyche spacecraft and solar panels, built by Maxar Technologies, are about the size of a singles tennis court. The body of the spacecraft is slightly bigger than a small van and about as tall as a regulation basketball hoop. The spacecraft includes a Gamma-Ray and Neutron Spectrometer, a Multispectral Imager, a Magnetometer and an x-band radio telecommunications system.<br><br>The Psyche mission is also testing a sophisticated new laser communication technology, called Deep Space Optical Communication, that encodes data in photons to communicate between a probe in deep space and Earth.">
+          <a-light type="point" color="orange" intensity="5" distance="20" decay="1"></a-light>
+        </a-entity>
 
-        <!-- congrats panel -->
-        <a-entity id="congrats-panel" visible="false">
-          <!-- black panel -->
-          <a-plane id="panel" position="0 1.6 -2" width="4" height="3" color="#000000"></a-plane>
-          <a-text id="congrats-text-line1" value="Congratulations!" position="0 2.3 -1.9" color="white" align="center" scale="1.2 1.2 1.2"></a-text>
-          <a-text id="congrats-text-line2" value="You found all 5 objects used to measure Psyche!" position="0 1.8 -1.9" color="white" align="center" scale="1 1 1"></a-text>
-          <a-text id="congrats-text-line3" value="Thank you so much for playing." position="0 1.3 -1.9" color="white" align="center" scale="1 1 1"></a-text>
-          <a-text id="congrats-text-line4" value="To read more on the Psyche mission, please visit https://psyche.asu.edu" position="0 0.8 -1.9" color="white" align="center" scale="1 1 1"></a-text>
-      </a-entity>
+        <!-- TO BE REMOVED -->
+        <a-text id="found-text" value="Found: 0" position="-1.5 2 -3" color="white" align="center" visible="false"></a-text>
     </a-scene>
 
     <!-- popup -->
     <div id="popup">
         <p id="popup-text"></p>
-        <button onclick="document.getElementById('popup').style.display = 'none';">Close</button>
-    </div>
-
-    <div id="completion-popup" class="popup">
-      <p>yipee</p>
-      <button onclick="document.getElementById('completion-popup').style.display = 'none';">Close</button>
+        <button id="close-popup">CLOSE</button>
     </div>
 
     <script>
       var found = 0;
-        AFRAME.registerComponent('cursor-listener', {
-            init: function () {
-                this.el.addEventListener('click', function (evt) {
-                    if (this.getAttribute('visible') == true) {
-                        found++;
+      var allFound = false;
+      
+      AFRAME.registerComponent('cursor-listener', {
+          init: function () {
+              this.el.addEventListener('click', function (evt) {
+                  if (this.getAttribute('visible') == true) {
+                      found++;
 
-                        document.querySelector('#found-text').setAttribute('value', 'Found: ' + found);
-                        var popupText = this.getAttribute('data-popup-text');
+                      document.querySelector('#found-text').setAttribute('value', 'Found: ' + found);
+                      var popupText = this.getAttribute('data-popup-text');
 
-                        // displays multiline
-                        document.getElementById('popup-text').innerHTML = popupText;
-                        document.getElementById('popup').style.display = 'block';
+                      // displays multiline
+                      document.getElementById('popup-text').innerHTML = popupText;
+                      document.getElementById('popup').style.display = 'block';
 
-                        this.setAttribute('visible', false);
-                        
-                        if (found == 5) {
-                            document.getElementById('completion-popup').style.display = 'block';
+                      this.setAttribute('visible', false);
+                      
+                      if (found == 6) {
+                          allFound = true;
+                      }
+                  }
+              });
+          }
+      });
 
-                            var congratsPanel = document.getElementById('congrats-panel');
-                            congratsPanel.setAttribute('visible', true);
+      // Close popup handler
+      document.getElementById('close-popup').addEventListener('click', function() {
+          document.getElementById('popup').style.display = 'none';
+          if (allFound) {
+              document.getElementById('completion-panel').style.display = 'block';
+          }
+      });
 
-                            var camera = document.getElementById('camera');
-                            var cameraPosition = camera.getAttribute('position');
-                            var cameraRotation = camera.getAttribute('rotation');
+      // bounces
+      function setupBouncingSpheres() {
+          const spheres = document.querySelectorAll('[id^="object"]');
+          const bounds = {
+              minX: -5, maxX: 5,
+              minY: 1, maxY: 4,
+              minZ: -5, maxZ: 5
+          };
+          const speedRange = { min: 0.5, max: 2 };
+          
+          spheres.forEach((sphere) => {
+              // make sphere visible
+              sphere.setAttribute('visible', true);
+              
+              // bounds for bounce
+              const pos = {
+                  x: bounds.minX + Math.random() * (bounds.maxX - bounds.minX),
+                  y: bounds.minY + Math.random() * (bounds.maxY - bounds.minY),
+                  z: bounds.minZ + Math.random() * (bounds.maxZ - bounds.minZ)
+              };
+              sphere.setAttribute('position', pos);
+              
+              const velocity = {
+                  x: (Math.random() - 0.5) * 2 * speedRange.max,
+                  y: (Math.random() - 0.5) * 2 * speedRange.max,
+                  z: (Math.random() - 0.5) * 2 * speedRange.max
+              };
+              
+              // adds physics
+              sphere.setAttribute('animation__position', {
+                  property: 'position',
+                  dur: 20000,
+                  easing: 'linear',
+                  from: `${pos.x} ${pos.y} ${pos.z}`,
+                  to: `${pos.x + velocity.x * 10} ${pos.y + velocity.y * 10} ${pos.z + velocity.z * 10}`,
+                  loop: true
+              });
+              
+              // adds slight bounce
+              sphere.setAttribute('animation__bounce', {
+                  property: 'position',
+                  dur: 1000 + Math.random() * 2000,
+                  dir: 'alternate',
+                  easing: 'easeInOutQuad',
+                  from: `${pos.x} ${pos.y} ${pos.z}`,
+                  to: `${pos.x} ${pos.y + 0.5} ${pos.z}`,
+                  loop: true
+              });
+          });
+          
+          // show the found counter
+          document.querySelector('#found-text').setAttribute('visible', true);
+      }
 
-                            var distance = 5;
-                            var rad = THREE.Math.degToRad(cameraRotation.y);
-                            var x = cameraPosition.x - Math.sin(rad) * distance;
-                            var z = cameraPosition.z - Math.cos(rad) * distance;
-
-                            // panel
-                            var panel = document.getElementById('panel');
-                            var line1 = document.getElementById('congrats-text-line1');
-                            var line2 = document.getElementById('congrats-text-line2');
-                            var line3 = document.getElementById('congrats-text-line3');
-                            panel.setAttribute('position', {x: x, y: cameraPosition.y, z: z});
-                            line1.setAttribute('position', {x: x, y: cameraPosition.y + 0.7, z: z - 0.1});
-                            line2.setAttribute('position', {x: x, y: cameraPosition.y + 0.2, z: z - 0.1});
-                            line3.setAttribute('position', {x: x, y: cameraPosition.y - 0.3, z: z - 0.1});
-                        }
-                    }
-                });
-            }
-        });
-
-        // random generation
-        function getRandomPosition() {
-            var x = (Math.random() - 0.5) * 10;
-            var y = Math.random() * 5 + 2;
-            var z = (Math.random() - 0.5) * 10; 
-            return {x: x, y: y, z: z};
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var spheres = document.querySelectorAll('[id^="object"]');
-            spheres.forEach(function(sphere) {
-                var pos = getRandomPosition();
-                sphere.setAttribute('position', pos);
-            });
-        });
+      document.addEventListener('DOMContentLoaded', function() {
+          // hides all spheres
+          const spheres = document.querySelectorAll('[id^="object"]');
+          spheres.forEach(sphere => {
+              sphere.setAttribute('visible', false);
+          });
+          
+          // begin button
+          document.getElementById('begin-button').addEventListener('click', function() {
+              document.getElementById('intro-panel').style.display = 'none';
+              setupBouncingSpheres();
+          });
+          
+          // play again button
+          document.getElementById('play-again-button').addEventListener('click', function() {
+              location.reload();
+          });
+      });
     </script>
 </body>
 </html>
