@@ -174,6 +174,7 @@
         //asteroid user standing on 
         <a-assets>
             <a-asset-item id="psyche" src="assets/PSYCHE_20170116_DEC.obj"></a-asset-item>
+            <a-asset-item id="dish" src="assets/models/Dish.obj">
         </a-assets>
 
         <a-entity id="#psyche-asteroid"
@@ -187,8 +188,8 @@
         <a-light type="ambient" color="#FFF" intensity="0.5"></a-light>
 
         <!-- obj1 -->
-        <a-entity id="object1" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: pink" position="-2 1.5 -3" visible="false" data-text="obj1" data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University.">
-          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
+        <a-entity id="object1" cursor-listener obj-model="obj: #dish" position="-2 1.5 -3" visible="false" data-text="obj1" data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University.">
+          <a-light type="point" color="#dbdbdb" intensity="5" disßtance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 2 -->
