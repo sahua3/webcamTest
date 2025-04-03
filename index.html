@@ -176,6 +176,8 @@
             <a-asset-item id="psyche" src="assets/PSYCHE_20170116_DEC.obj"></a-asset-item>
             <a-asset-item id="dish" src="assets/models/Dish.obj">
             <a-asset-item id="dish-mtl" src="/assets/models/Dish.mtl"></a-asset-item>
+            <a-asset-item id="magnometer" src="assets/models/Magnetometer.obj">
+            <a-asset-item id="magnometer-mtl" src="/assets/models/Magnetometer.mtl"></a-asset-item>
         </a-assets>
 
         <a-entity id="#psyche-asteroid"
@@ -186,15 +188,15 @@
             <a-entity light="type: point; intensity: 1; color: white" position="6 2 -4"></a-entity>
         </a-entity>
 
-        <a-light type="ambient" color="#FFF" intensity="0.5"></a-light>
+        <a-light type="ambient" color="#FFF" intensity="10"></a-light>
 
         <!-- obj1 -->
-        <a-entity id="object1" cursor-listener obj-model="obj: #dish; mtl: #dish-mtl" scale="0.01 0.01 0.01" position="-2 1.5 -3" visible="false" data-text="obj1" data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University.">
+        <a-entity id="object1" cursor-listener obj-model="obj: #dish; mtl: #dish-mtl" scale="0.25 0.25 0.25" position="-2 1.5 -3" visible="false" data-text="obj1" data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University.">
           <a-light type="point" color="#dbdbdb" intensity="5" disßtance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 2 -->
-        <a-entity id="object2" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: blue" position="0 1.5 -3" visible="false" data-text="obj2" data-popup-text="PSYCHE GAMMA-RAY AND NEUTRON SPECTROMETER<br><br>The Gamma-Ray and Neutron Spectrometer will detect, measure, and map Psyche's elemental composition. The instrument is mounted on a 6-foot (2-meter) boom to distance the sensors from background radiation created by energetic particles interacting with the spacecraft and to provide an unobstructed field of view. The team is based at the Applied Physics Laboratory at Johns Hopkins University.">
+        <a-entity id="object2" cursor-listener obj-model="obj: #magnometer; mtl: #magnometer-mtl" scale="0.25 0.25 0.25" position="0 1.5 -3" visible="false" data-text="obj2" data-popup-text="PSYCHE GAMMA-RAY AND NEUTRON SPECTROMETER<br><br>The Gamma-Ray and Neutron Spectrometer will detect, measure, and map Psyche's elemental composition. The instrument is mounted on a 6-foot (2-meter) boom to distance the sensors from background radiation created by energetic particles interacting with the spacecraft and to provide an unobstructed field of view. The team is based at the Applied Physics Laboratory at Johns Hopkins University.">
           <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
