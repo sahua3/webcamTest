@@ -11,7 +11,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            background: url('assets/starspt2.jpg') no-repeat center center fixed;
+            background: url('assets/images/starspt2.jpg') no-repeat center center fixed;
             background-size: cover;
         }
         /* popup */
@@ -154,8 +154,8 @@
         <p><a href="https://psyche.asu.edu" target="_blank">https://psyche.asu.edu</a></p>
         <button id="play-again-button">PLAY AGAIN</button>
         <div class="completion-images">
-            <img src="assets/Psyche_BadgeOutline_Color-PNG.png" alt="Psyche Mission Badge" class="completion-image">
-            <img src="assets/NASA-Logo-Large.png" alt="NASA 'meatball' logo" class="completion-image">
+            <img src="assets/images/Psyche_BadgeOutline_Color-PNG.png" alt="Psyche Mission Badge" class="completion-image">
+            <img src="assets/images/NASA-Logo-Large.png" alt="NASA 'meatball' logo" class="completion-image">
         </div>
     </div>
 
@@ -173,18 +173,22 @@
 
         //asteroid user standing on 
         <a-assets>
-            <a-asset-item id="psyche" src="assets/PSYCHE_20170116_DEC.obj"></a-asset-item>
-            <a-asset-item id="dish" src="assets/models/Dish.obj">
-            <a-asset-item id="dish-mtl" src="/assets/models/Dish.mtl"></a-asset-item>
-            <a-asset-item id="magnometer" src="assets/models/Magnetometer.obj">
-            <a-asset-item id="magnometer-mtl" src="/assets/models/Magnetometer.mtl"></a-asset-item>
+            <a-asset-item id="psyche" src="assets/asteroid/PSYCHE_20170116_DEC.obj"></a-asset-item>
+
+            <a-asset-item id="dish" src="assets/models/dish/Dish.obj">
+            <a-asset-item id="dish-mtl" src="/assets/models/dish/Dish.mtl"></a-asset-item>
+
+            <a-asset-item id="magnometer" src="assets/models/magnetometer/Magnetometer.obj">
+            <a-asset-item id="magnometer-mtl" src="/assets/models/magnetometer/Magnetometer.mtl"></a-asset-item>
+            
+            <a-asset-item id="spacecraft" src="assets/models/spacecraft/Space_Craft.obj">
+            <a-asset-item id="spacecraft-mtl" src="/assets/models/spacecraft/Space_Craft.mtl"></a-asset-item>
+
+            <a-asset-item id="dsoc" src="assets/models/DSOC/DSOC.obj">
+            <a-asset-item id="dsoc-mtl" src="/assets/models/DSOC/DSOC.mtl"></a-asset-item>
         </a-assets>
 
-        <a-entity id="#psyche-asteroid"
-            obj-model="obj: #psyche"
-            position="-1 -2 -.25"
-            scale=".5 .5 .5"
-            rotation="0 0 0">
+        <a-entity id="#psyche-asteroid" obj-model="obj: #psyche" position="-1 -2 -.25" scale=".5 .5 .5" rotation="0 0 0">
             <a-entity light="type: point; intensity: 1; color: white" position="6 2 -4"></a-entity>
         </a-entity>
 
@@ -192,17 +196,17 @@
 
         <!-- obj1 -->
         <a-entity id="object1" cursor-listener obj-model="obj: #dish; mtl: #dish-mtl" scale="0.25 0.25 0.25" position="-2 1.5 -3" visible="false" data-text="obj1" data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University.">
-          <a-light type="point" color="#dbdbdb" intensity="5" disßtance="20" decay="1"></a-light>
+          <a-light type="point" color="#dbdbdb" intensity="5" disßtance="20"></a-light>
         </a-entity>
 
         <!-- 2 -->
         <a-entity id="object2" cursor-listener obj-model="obj: #magnometer; mtl: #magnometer-mtl" scale="0.25 0.25 0.25" position="0 1.5 -3" visible="false" data-text="obj2" data-popup-text="PSYCHE GAMMA-RAY AND NEUTRON SPECTROMETER<br><br>The Gamma-Ray and Neutron Spectrometer will detect, measure, and map Psyche's elemental composition. The instrument is mounted on a 6-foot (2-meter) boom to distance the sensors from background radiation created by energetic particles interacting with the spacecraft and to provide an unobstructed field of view. The team is based at the Applied Physics Laboratory at Johns Hopkins University.">
-          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
+          <a-light type="point" color="#dbdbdb" intensity="5" distance="20"></a-light>
         </a-entity>
 
         <!-- 3 -->
-        <a-entity id="object3" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: green" position="2 1.5 -3" visible="false" data-text="obj3" data-popup-text="PSYCHE MAGNETOMETER<br><br>The Psyche Magnetometer is designed to detect and measure the remanent magnetic field of the asteroid. It is composed of two identical high-sensitivity magnetic field sensors located at the middle and outer end of a 6-foot (2-meter) boom. The team is based at Massachusetts Institute of Technology and Technical University of Denmark (DTU).">
-          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
+        <a-entity id="object3" cursor-listener obj-model="obj: #magnometer; mtl: #magnometer-mtl" scale="0.25 0.25 0.25" position="2 1.5 -3" visible="false" data-text="obj3" data-popup-text="PSYCHE MAGNETOMETER<br><br>The Psyche Magnetometer is designed to detect and measure the remanent magnetic field of the asteroid. It is composed of two identical high-sensitivity magnetic field sensors located at the middle and outer end of a 6-foot (2-meter) boom. The team is based at Massachusetts Institute of Technology and Technical University of Denmark (DTU).">
+          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" ></a-light>
         </a-entity>
 
         <!-- 4 -->
@@ -211,13 +215,13 @@
         </a-entity>
 
         <!-- 5 -->
-        <a-entity id="object5" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: purple" position="2 1.5 -5" visible="false" data-text="obj5" data-popup-text="DEEP SPACE OPTICAL COMMUNICATION (DSOC)<br><br>The Psyche mission will test a sophisticated new laser communication technology that encodes data in photons (rather than radio waves) to communicate between a probe in deep space and Earth. Using light instead of radio allows the spacecraft to communicate more data in a given amount of time. The DSOC team is based at the Jet Propulsion Laboratory.">
-          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
+        <a-entity id="object5" cursor-listener obj-model="obj: #dsoc; mtl: #dsoc-mtl" scale="0.25 0.25 0.25" position="2 1.5 -5" visible="false" data-text="obj5" data-popup-text="DEEP SPACE OPTICAL COMMUNICATION (DSOC)<br><br>The Psyche mission will test a sophisticated new laser communication technology that encodes data in photons (rather than radio waves) to communicate between a probe in deep space and Earth. Using light instead of radio allows the spacecraft to communicate more data in a given amount of time. The DSOC team is based at the Jet Propulsion Laboratory.">
+          <a-light type="point" color="#dbdbdb" intensity="5" distance="20"></a-light>
         </a-entity>
 
         <!-- 6 -->
-        <a-entity id="object6" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: orange" position="0 1.5 -5" visible="false" data-text="obj6" data-popup-text="PSYCHE SPACECRAFT<br><br>The Psyche spacecraft and solar panels, built by Maxar Technologies, are about the size of a singles tennis court. The body of the spacecraft is slightly bigger than a small van and about as tall as a regulation basketball hoop. The spacecraft includes a Gamma-Ray and Neutron Spectrometer, a Multispectral Imager, a Magnetometer and an x-band radio telecommunications system.<br><br>The Psyche mission is also testing a sophisticated new laser communication technology, called Deep Space Optical Communication, that encodes data in photons to communicate between a probe in deep space and Earth.">
-          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
+        <a-entity id="object6" cursor-listener obj-model="obj: #spacecraft; mtl: #spacecraft-mtl" scale="0.25 0.25 0.25" position="0 1.5 -5" visible="false" data-text="obj6" data-popup-text="PSYCHE SPACECRAFT<br><br>The Psyche spacecraft and solar panels, built by Maxar Technologies, are about the size of a singles tennis court. The body of the spacecraft is slightly bigger than a small van and about as tall as a regulation basketball hoop. The spacecraft includes a Gamma-Ray and Neutron Spectrometer, a Multispectral Imager, a Magnetometer and an x-band radio telecommunications system.<br><br>The Psyche mission is also testing a sophisticated new laser communication technology, called Deep Space Optical Communication, that encodes data in photons to communicate between a probe in deep space and Earth.">
+          <a-light type="point" color="#88E788" intensity="5" distance="20" ></a-light>
         </a-entity>
 
         <!-- TO BE REMOVED -->
