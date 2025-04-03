@@ -29,7 +29,7 @@
             z-index: 1000;
             text-align: center;
             font-family: 'Exo 2', sans-serif;
-            max-width: 500px;
+            max-width: 400px;
             box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
         }
         
@@ -188,34 +188,36 @@
 
         <!-- obj1 -->
         <a-entity id="object1" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: pink" position="-2 1.5 -3" visible="false" data-text="obj1" data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University.">
-          <a-light type="point" color="#FFFFFF" intensity="5" distance="25" decay="1"></a-light>
+          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 2 -->
         <a-entity id="object2" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: blue" position="0 1.5 -3" visible="false" data-text="obj2" data-popup-text="PSYCHE GAMMA-RAY AND NEUTRON SPECTROMETER<br><br>The Gamma-Ray and Neutron Spectrometer will detect, measure, and map Psyche's elemental composition. The instrument is mounted on a 6-foot (2-meter) boom to distance the sensors from background radiation created by energetic particles interacting with the spacecraft and to provide an unobstructed field of view. The team is based at the Applied Physics Laboratory at Johns Hopkins University.">
-          <a-light type="point" color="#FFFFFF" intensity="5" distance="25" decay="1"></a-light>
+          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 3 -->
         <a-entity id="object3" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: green" position="2 1.5 -3" visible="false" data-text="obj3" data-popup-text="PSYCHE MAGNETOMETER<br><br>The Psyche Magnetometer is designed to detect and measure the remanent magnetic field of the asteroid. It is composed of two identical high-sensitivity magnetic field sensors located at the middle and outer end of a 6-foot (2-meter) boom. The team is based at Massachusetts Institute of Technology and Technical University of Denmark (DTU).">
-          <a-light type="point" color="#FFFFFF" intensity="5" distance="25" decay="1"></a-light>
+          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 4 -->
         <a-entity id="object4" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: yellow" position="-2 1.5 -5" visible="false" data-text="obj4" data-popup-text="RADIO SCIENCE<br><br>The Psyche mission will use the X-band radio telecommunications system to measure Psyche's gravity field to high precision. When combined with topography derived from onboard imagery, this will provide information on the interior structure of Psyche. The team is based at Massachusetts Institute of Technology and the Jet Propulsion Laboratory.">
-          <a-light type="point" color="#FFFFFF" intensity="5" distance="25" decay="1"></a-light>
+          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 5 -->
         <a-entity id="object5" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: purple" position="2 1.5 -5" visible="false" data-text="obj5" data-popup-text="DEEP SPACE OPTICAL COMMUNICATION (DSOC)<br><br>The Psyche mission will test a sophisticated new laser communication technology that encodes data in photons (rather than radio waves) to communicate between a probe in deep space and Earth. Using light instead of radio allows the spacecraft to communicate more data in a given amount of time. The DSOC team is based at the Jet Propulsion Laboratory.">
-          <a-light type="point" color="#dbdbdb" intensity="5" distance="25" decay="1"></a-light>
+          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
         <!-- 6 -->
         <a-entity id="object6" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: orange" position="0 1.5 -5" visible="false" data-text="obj6" data-popup-text="PSYCHE SPACECRAFT<br><br>The Psyche spacecraft and solar panels, built by Maxar Technologies, are about the size of a singles tennis court. The body of the spacecraft is slightly bigger than a small van and about as tall as a regulation basketball hoop. The spacecraft includes a Gamma-Ray and Neutron Spectrometer, a Multispectral Imager, a Magnetometer and an x-band radio telecommunications system.<br><br>The Psyche mission is also testing a sophisticated new laser communication technology, called Deep Space Optical Communication, that encodes data in photons to communicate between a probe in deep space and Earth.">
-          <a-light type="point" color="#FFFFFF" intensity="5" distance="25" decay="1"></a-light>
+          <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
+        <!-- TO BE REMOVED -->
+        <a-text id="found-text" value="Found: 0" position="-1.5 2 -3" color="white" align="center" visible="false"></a-text>
     </a-scene>
 
     <!-- popup -->
