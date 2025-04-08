@@ -12,10 +12,10 @@ Pc 0.000000
 Pcr 0.030000
 aniso 0.000000
 anisor 0.000000
-map_Kd C:/Users/10and/Downloads/dented-metal-bl/dented-metal-bl/dented-metal_albedo.png
-map_Pm C:/Users/10and/Downloads/dented-metal-bl/dented-metal-bl/dented-metal_metallic.png
-map_Pr C:/Users/10and/Downloads/dented-metal-bl/dented-metal-bl/dented-metal_roughness.png
-map_Bump -bm 1.000000 C:/Users/10and/Downloads/dented-metal-bl/dented-metal-bl/dented-metal_normal-ogl.png
+map_Kd ../../textures/dented_metal-bl/dented-metal_albedo.png
+map_Pm ../../textures/dented_metal-bl/dented-metal_metallic.png
+map_Pr ../../textures/dented_metal-bl/dented-metal_roughness.png
+map_Bump -bm 1.000000 ../../textures/dented_metal-bl/dented-metal_normal-ogl.png
 
 newmtl DID_IT??
 Kd 0.800000 0.800000 0.800000
@@ -29,8 +29,8 @@ Pc 0.000000
 Pcr 0.030000
 aniso 0.000000
 anisor 0.000000
-map_Pm C:/Users/10and/Downloads/light-gold-bl/light-gold-bl/lightgold_roughness.png
-map_Pr C:/Users/10and/Downloads/metal_0005_4k_bRfN9h/metal_0005_roughness_4k.jpg
+map_Pm ../../textures/metal_0005_4k_bRfN9h/lightgold_roughness.png
+map_Pr ../../textures/metal_0005_4k_bRfN9h/metal_0005_roughness_4k.jpg
 map_Bump -bm 1.000000 C:/Users/10and/Downloads/metal_0005_4k_bRfN9h/metal_0005_normal_opengl_4k.png
 
 newmtl Dark_Grey
