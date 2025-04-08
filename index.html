@@ -174,11 +174,10 @@
 
         <!-- asteroid user standing on -->
         <a-assets>
-            <a-asset-item id="psyche" src="assets/asteroid/PSYCHE_20170116_DEC.obj"></a-asset-item>
+            <!--<a-asset-item id="psyche" src="assets/asteroid/PSYCHE_20170116_DEC.obj"></a-asset-item>-->
 
             <a-asset-item id="dish" src="assets/models/dish/Dish.obj"></a-asset-item>
             <a-asset-item id="dish-mtl" src="/assets/models/dish/Dish.mtl"></a-asset-item>
-            <a-asset-item id="dish-gltf" src="/assets/models/dish/Dish.gltf"></a-asset-item>
 
             <a-asset-item id="magnometer" src="assets/models/magnetometer/Magnetometer.obj"></a-asset-item>
             <a-asset-item id="magnometer-mtl" src="/assets/models/magnetometer/Magnetometer.mtl"></a-asset-item>
@@ -190,15 +189,12 @@
             <a-asset-item id="dsoc-mtl" src="/assets/models/DSOC/DSOC.mtl"></a-asset-item>
         </a-assets>
 
-        <a-entity id="#psyche-asteroid" obj-model="obj: #psyche" position="-1 -2 -.25" scale=".5 .5 .5" rotation="0 0 0">
-            <a-entity light="type: point; intensity: 1; color: white" position="6 2 -4"></a-entity>
-        </a-entity>
+       
 
         <a-light type="ambient" color="#445588" intensity="0.8"></a-light>
         <a-light type="directional" color="#ffffff" intensity="0.6" position="-1 1 -1"></a-light>
         <a-light type="hemisphere" color="#445588" groundColor="#112233" intensity="0.5"></a-light>
         
-        <!-- Add these point lights around the scene -->
         <a-light type="point" color="#88aaff" intensity="0.8" distance="20" position="5 5 -10" decay="1"></a-light>
         <a-light type="point" color="#aaccff" intensity="0.6" distance="15" position="-5 3 -8" decay="1"></a-light>
         <a-light type="point" color="#55aaff" intensity="0.5" distance="25" position="0 10 -15" decay="1"></a-light>
