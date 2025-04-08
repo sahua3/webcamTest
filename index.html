@@ -349,6 +349,10 @@
               location.reload();
           });
       });
+      
+      document.querySelector('a-scene').addEventListener('loaded', () => {
+        console.log('Scene fully loaded');
+      });
     </script>
 </body>
 </html>
