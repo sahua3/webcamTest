@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+    
         {
             "command": "npm i -g five-server@latest && five-server --port=8000",
             "name": "Run npm start",
