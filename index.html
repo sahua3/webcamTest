@@ -178,6 +178,7 @@
 
             <a-asset-item id="dish" src="assets/models/dish/Dish.obj"></a-asset-item>
             <a-asset-item id="dish-mtl" src="/assets/models/dish/Dish.mtl"></a-asset-item>
+            <a-asset-item id="dish-gltf" src="/assets/models/dish/Dish.gltf"></a-asset-item>
 
             <a-asset-item id="magnometer" src="assets/models/magnetometer/Magnetometer.obj"></a-asset-item>
             <a-asset-item id="magnometer-mtl" src="/assets/models/magnetometer/Magnetometer.mtl"></a-asset-item>
@@ -203,7 +204,7 @@
         <a-light type="point" color="#55aaff" intensity="0.5" distance="25" position="0 10 -15" decay="1"></a-light>
 
         <!-- obj1 -->
-        <a-entity id="object1" cursor-listener obj-model="obj: #dish; mtl: #dish-mtl" scale="0.25 0.25 0.25" position="-2 1.5 -3" outline="color: #45CC2D; thickness: 0.5" visible="false" data-text="obj1" data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University.">
+        <a-entity id="object1" cursor-listener gltf-model="#dish-gltf" scale="0.25 0.25 0.25" position="-2 1.5 -3" outline="color: #45CC2D; thickness: 0.5" visible="false" data-text="obj1" data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University.">
           <a-light type="point" color="#dbdbdb" intensity="5" distance="20"></a-light>
         </a-entity>
 
@@ -349,7 +350,7 @@
               location.reload();
           });
       });
-      
+
       document.querySelector('a-scene').addEventListener('loaded', () => {
         console.log('Scene fully loaded');
       });
