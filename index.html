@@ -221,7 +221,7 @@
           <a-light type="point" color="#dbdbdb" intensity="5" distance="20" ></a-light>
         </a-entity>
 
-        <!-- TODO: CHANGE OBJECT TO MATCH THE DESCRIPTION -->
+        <!-- DISH -->
         <a-entity id="object4" cursor-listener obj-model="obj: #dish; mtl: #dish-mtl" scale="0.25 0.25 0.25" position="-2 1.5 -5" outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable data-text="obj4" data-popup-text="RADIO SCIENCE<br><br>The Psyche mission will use the X-band radio telecommunications system to measure Psyche's gravity field to high precision. When combined with topography derived from onboard imagery, this will provide information on the interior structure of Psyche. The team is based at Massachusetts Institute of Technology and the Jet Propulsion Laboratory.">
           <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
@@ -281,7 +281,6 @@
       });
 
       // ADDS MOVEMENT
-      // TODO: TEST FUNCTIONALITY SINCE OBJ CHANGE
       function setupBouncingSpheres() {
           const spheres = document.querySelectorAll('[id^="object"]');
           const bounds = {
