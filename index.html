@@ -138,6 +138,7 @@
     </style>
 </head>
 <body>
+    <!-- TODO: ADD IMAGES TO EACH POPUP RELATED TO THE OBJ-->
     <div id="intro-panel">
         <h1>Psyche Space Hunt</h1>
         <p>Welcome to the Psyche Mission interactive experience!</p>
@@ -187,6 +188,12 @@
 
             <a-asset-item id="dsoc" src="assets/models/DSOC/DSOC.obj"></a-asset-item>
             <a-asset-item id="dsoc-mtl" src="assets/models/DSOC/DSOC.mtl"></a-asset-item>
+
+            <a-asset-item id="imagers" src="assets/models/imagers/Imagers.obj"></a-asset-item>
+            <a-asset-item id="imagers-mtl" src="assets/models/imagers/Imagers.mtl"></a-asset-item>
+
+            <a-asset-item id="spectrometer" src="assets/models/spectrometer/Spectrometer.obj"></a-asset-item>
+            <a-asset-item id="spectrometer-mtl" src="assets/models/spectrometer/Spectrometer.mtl"></a-asset-item>
         </a-assets>
 
        
@@ -199,13 +206,13 @@
         <a-light type="point" color="#aaccff" intensity="0.6" distance="15" position="-5 3 -8" decay="1"></a-light>
         <a-light type="point" color="#55aaff" intensity="0.5" distance="25" position="0 10 -15" decay="1"></a-light>
 
-        <!-- TODO: CHANGE OBJECT TO MATCH THE DESCRIPTION -->
-        <a-entity id="object1" cursor-listener obj-model="obj: #dish; mtl: #dish-mtl" scale="0.25 0.25 0.25" position="-2 1.5 -3" outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable data-text="obj1" data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University.">
+        <!-- IMAGERS -->
+        <a-entity id="object1" cursor-listener obj-model="obj: #imagers; mtl: #imagers-mtl" scale="0.5 0.5 0.5" position="-2 1.5 -3" outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable data-text="obj1" data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University.">
           <a-light type="point" color="#dbdbdb" intensity="5" distance="20"></a-light>
         </a-entity>
 
-        <!-- TODO: CHANGE OBJECT TO MATCH THE DESCRIPTION -->
-        <a-entity id="object2" cursor-listener obj-model="obj: #magnometer; mtl: #magnometer-mtl" scale="0.25 0.25 0.25" position="0 1.5 -3" outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable data-text="obj2" data-popup-text="PSYCHE GAMMA-RAY AND NEUTRON SPECTROMETER<br><br>The Gamma-Ray and Neutron Spectrometer will detect, measure, and map Psyche's elemental composition. The instrument is mounted on a 6-foot (2-meter) boom to distance the sensors from background radiation created by energetic particles interacting with the spacecraft and to provide an unobstructed field of view. The team is based at the Applied Physics Laboratory at Johns Hopkins University.">
+        <!-- SPECTROMETER -->
+        <a-entity id="object2" cursor-listener obj-model="obj: #spectrometer; mtl: #spectrometer-mtl" scale="0.25 0.25 0.25" position="0 1.5 -3" outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable data-text="obj2" data-popup-text="PSYCHE GAMMA-RAY AND NEUTRON SPECTROMETER<br><br>The Psyche spacecraft travels using solar-electric (low-thrust) propulsion. Solar electric propulsion uses electricity from solar arrays to create electromagnetic fields to accelerate and expel charged atoms (ions) of xenon to create a very low thrust with a very efficient use of propellant.[14] This will be the first use of Hall effect thrusters beyond lunar orbit.">
           <a-light type="point" color="#dbdbdb" intensity="5" distance="20"></a-light>
         </a-entity>
 
@@ -215,7 +222,7 @@
         </a-entity>
 
         <!-- TODO: CHANGE OBJECT TO MATCH THE DESCRIPTION -->
-        <a-entity id="object4" cursor-listener geometry="primitive: sphere; radius: 0.5" material="color: yellow" position="-2 1.5 -5" outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable data-text="obj4" data-popup-text="RADIO SCIENCE<br><br>The Psyche mission will use the X-band radio telecommunications system to measure Psyche's gravity field to high precision. When combined with topography derived from onboard imagery, this will provide information on the interior structure of Psyche. The team is based at Massachusetts Institute of Technology and the Jet Propulsion Laboratory.">
+        <a-entity id="object4" cursor-listener obj-model="obj: #dish; mtl: #dish-mtl" scale="0.25 0.25 0.25" position="-2 1.5 -5" outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable data-text="obj4" data-popup-text="RADIO SCIENCE<br><br>The Psyche mission will use the X-band radio telecommunications system to measure Psyche's gravity field to high precision. When combined with topography derived from onboard imagery, this will provide information on the interior structure of Psyche. The team is based at Massachusetts Institute of Technology and the Jet Propulsion Laboratory.">
           <a-light type="point" color="#dbdbdb" intensity="5" distance="20" decay="1"></a-light>
         </a-entity>
 
