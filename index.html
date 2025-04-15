@@ -211,6 +211,7 @@
         <p>Find all 6 to complete the challenge and learn about NASA's exciting mission to explore a metal-rich
             asteroid!</p>
         <button id="begin-button">BEGIN MISSION</button>
+        <p>Please note: you may experience lag at the beginning of the mission due to 3d model loading</p>
     </div>
 
     <div id="completion-panel">
@@ -248,7 +249,6 @@
 
             <a-asset-item id="spacecraft" src="assets/models/spacecraft/Space_Craft.obj"></a-asset-item>
             <a-asset-item id="spacecraft-mtl" src="assets/models/spacecraft/Space_Craft.mtl"></a-asset-item>
-            <a-asset-item id="space" src="assets/models/spacecraft/untitled.glb"></a-asset-item>
 
             <a-asset-item id="dsoc" src="assets/models/DSOC/DSOC.obj"></a-asset-item>
             <a-asset-item id="dsoc-mtl" src="assets/models/DSOC/DSOC.mtl"></a-asset-item>
@@ -316,7 +316,7 @@
         </a-entity>
 
         <!-- SPACECRAFT -->
-        <a-entity id="object6" cursor-listener gltf-model="#space" scale="0.25 0.25 0.25"
+        <a-entity id="object6" cursor-listener obj-model="obj: #spacecraft; mtl: #spacecraft-mtl" scale="0.25 0.25 0.25"
             outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable data-text="obj6"
             data-popup-text="PSYCHE SPACECRAFT<br><br>The Psyche spacecraft and solar panels, built by Maxar Technologies, are about the size of a singles tennis court. The body of the spacecraft is slightly bigger than a small van and about as tall as a regulation basketball hoop. The spacecraft includes a Gamma-Ray and Neutron Spectrometer, a Multispectral Imager, a Magnetometer and an x-band radio telecommunications system.<br><br>The Psyche mission is also testing a sophisticated new laser communication technology, called Deep Space Optical Communication, that encodes data in photons to communicate between a probe in deep space and Earth.">
         </a-entity>
