@@ -42,10 +42,10 @@ Pc 0.000000
 Pcr 0.030000
 aniso 0.000000
 anisor 0.000000
-map_Kd C:/Users/10and/Downloads/light-gold-bl/light-gold-bl/lightgold_albedo.png
-map_Pm C:/Users/10and/Downloads/light-gold-bl/light-gold-bl/lightgold_metallic.png
-map_Pr C:/Users/10and/Downloads/light-gold-bl/light-gold-bl/lightgold_roughness.png
-map_Bump -bm 1.000000 C:/Users/10and/Downloads/light-gold-bl/light-gold-bl/lightgold_normal-ogl.png
+map_Kd ../../textures/light-gold-bl/lightgold_albedo.png
+map_Pm ../../textures/light-gold-bl/lightgold_metallic.png
+map_Pr ../../textures/light-gold-bl/lightgold_roughness.png
+map_Bump -bm 1.000000 ../../textures/light-gold-bl/lightgold_normal-ogl.png
 
 newmtl gold_gold
 Ks 0.500000 0.500000 0.500000
