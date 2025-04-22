@@ -121,7 +121,7 @@
                 padding: 12px 30px;
                 font-size: 14px;
             }
-            
+
         }
 
         #intro-panel h1,
@@ -189,6 +189,68 @@
             height: 30px;
             transition: transform 0.3s ease;
         }
+
+        #credits-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(10, 10, 20, 0.95);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 700px;
+            width: 90%;
+            z-index: 1001;
+            border: 1px solid #FFD700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            font-family: 'Exo 2', sans-serif;
+            box-sizing: border-box;
+            display: none;
+        }
+
+        #credits-panel h1 {
+            margin-top: 0;
+            color: #FFD700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        #credits-panel p {
+            font-size: 10px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        #credits-panel a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        #credits-panel button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10px;
+            margin: 20px 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        #credits-panel button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
+        }
     </style>
 </head>
 
@@ -198,7 +260,8 @@
         <p>Welcome to the Psyche Mission interactive experience!</p>
         <p>Your mission is to find and click on all 6 objects scattered in this space. Each sphere represents an
             important instrument used to study the asteroid Psyche.</p>
-        <p>When you find an object, point your camera at it and click on it to learn more about the instrument it represents.</p>
+        <p>When you find an object, point your camera at it and click on it to learn more about the instrument it
+            represents.</p>
         <p>Find all 6 to complete the challenge and learn about NASA's exciting mission to explore a metal-rich
             asteroid!</p>
         <button id="begin-button">BEGIN MISSION!</button>
@@ -213,6 +276,23 @@
         <p>To learn more about the Psyche mission, please visit:</p>
         <p><a href="https://psyche.asu.edu" target="_blank">https://psyche.asu.edu</a></p>
         <button id="play-again-button">PLAY AGAIN</button>
+        <button id="view-credits-button">VIEW CREDITS</button>
+        <div class="completion-images">
+            <img src="assets/images/Psyche_BadgeOutline_Color-PNG.png" alt="Psyche Mission Badge"
+                class="completion-image">
+            <img src="assets/images/NASA-Logo-Large.png" alt="NASA 'meatball' logo" class="completion-image">
+        </div>
+    </div>
+
+    <div id="credits-panel">
+        <h1>Credits</h1>
+        <p>Psyche Space Hunt Experience</p>
+        <p>Created by: Ankita Sahu and Andre Smith</p>
+        <p>3D Models by Andre Smith</p>
+        <p>NASA Psyche Mission: <a href="https://psyche.asu.edu" target="_blank">https://psyche.asu.edu</a></p>
+        <p> This work was created in partial fulfillment of Virginia Commonwealth University Capstone Course “CMSC442/CMSC452″. The work is a result of the Psyche Student Collaborations component of NASA’s Psyche Mission (https://psyche.asu.edu). “Psyche: A Journey to a Metal World” [Contract number NNM16AA09C] is part of the NASA Discovery Program mission to solar system targets. Trade names and trademarks of ASU and NASA are used in this work for identification only. Their usage does not constitute an official endorsement, either expressed or implied, by Arizona State University or National Aeronautics and Space Administration. The content is solely the responsibility of the authors and does not necessarily represent the official views of ASU or NASA.</p>
+        <button id="credits-back-button">BACK</button>
+        <button id="credits-play-again-button">PLAY AGAIN</button>
         <div class="completion-images">
             <img src="assets/images/Psyche_BadgeOutline_Color-PNG.png" alt="Psyche Mission Badge"
                 class="completion-image">
@@ -241,6 +321,7 @@
 
             <a-asset-item id="spacecraft" src="assets/models/spacecraft/Space_Craft.obj"></a-asset-item>
             <a-asset-item id="spacecraft-mtl" src="assets/models/spacecraft/Space_Craft.mtl"></a-asset-item>
+            <a-asset-item id="spacecraft-gltf" src="assets/models/spacecraft/Spaceship.gltf"></a-asset-item>
 
             <a-asset-item id="dsoc" src="assets/models/DSOC/DSOC.obj"></a-asset-item>
             <a-asset-item id="dsoc-mtl" src="assets/models/DSOC/DSOC.mtl"></a-asset-item>
@@ -301,16 +382,16 @@
         </a-entity>
 
         <!-- DSOC -->
-        <a-entity id="object5" cursor-listener obj-model="obj: #dsoc; mtl: #dsoc-mtl" scale="1 1 1"
-            position="10 -10 15" outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable
-            data-text="obj5"
+        <a-entity id="object5" cursor-listener obj-model="obj: #dsoc; mtl: #dsoc-mtl" scale="1 1 1" position="10 -10 15"
+            outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable data-text="obj5"
             data-popup-text="DEEP SPACE OPTICAL COMMUNICATION (DSOC)<br><br>The Psyche mission will test a sophisticated new laser communication technology that encodes data in photons (rather than radio waves) to communicate between a probe in deep space and Earth. Using light instead of radio allows the spacecraft to communicate more data in a given amount of time. The DSOC team is based at the Jet Propulsion Laboratory.">
         </a-entity>
 
         <!-- SPACECRAFT obj-model="obj: #spacecraft; mtl: #spacecraft-mtl" -->
-         <!-- CRASHING. REMVED THE OBJ FOR NOW -->
-        <a-entity id="object6" cursor-listener obj-model="obj: #magnetometer; mtl: #magnetometer-mtl" scale="0.15 0.15 0.15"
-            outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable data-text="obj6" position="-3 3 5"
+        <!-- CRASHING. REMVED THE OBJ FOR NOW -->
+        <a-entity id="object6" cursor-listener gltf-model="#spacecraft-gltf"
+            scale="0.25 0.25 0.25" outline="color: #45CC2D; thickness: 0.5" visible="false" data-raycastable
+            data-text="obj6" position="-3 3 5"
             data-popup-text="PSYCHE SPACECRAFT<br><br>The Psyche spacecraft and solar panels, built by Maxar Technologies, are about the size of a singles tennis court. The body of the spacecraft is slightly bigger than a small van and about as tall as a regulation basketball hoop. The spacecraft includes a Gamma-Ray and Neutron Spectrometer, a Multispectral Imager, a Magnetometer and an x-band radio telecommunications system.<br><br>The Psyche mission is also testing a sophisticated new laser communication technology, called Deep Space Optical Communication, that encodes data in photons to communicate between a probe in deep space and Earth.">
         </a-entity>
 
@@ -409,6 +490,21 @@
             document.getElementById('play-again-button').addEventListener('click', function () {
                 location.reload();
             });
+        });
+
+        // CREDITS PANEL
+        document.getElementById('view-credits-button').addEventListener('click', function () {
+            document.getElementById('completion-panel').style.display = 'none';
+            document.getElementById('credits-panel').style.display = 'block';
+        });
+
+        document.getElementById('credits-back-button').addEventListener('click', function () {
+            document.getElementById('credits-panel').style.display = 'none';
+            document.getElementById('completion-panel').style.display = 'block';
+        });
+
+        document.getElementById('credits-play-again-button').addEventListener('click', function () {
+            location.reload();
         });
 
         //FOR TESTING
