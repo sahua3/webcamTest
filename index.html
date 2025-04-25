@@ -3,7 +3,6 @@
 
 <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script
         src="https://cdn.jsdelivr.net/npm/aframe-obj-loader-component@3.2.1/dist/aframe-obj-loader-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
@@ -264,14 +263,13 @@
     <div id="intro-panel">
         <h1>Psyche Space Hunt</h1>
         <p>Welcome to the Psyche Mission interactive experience!</p>
-        <p>Your mission is to find and click on all 6 objects scattered in this space. Each sphere represents an
+        <p>Your mission is to find and click on all 6 objects scattered in this space! Each object represents an
             important instrument used to study the asteroid Psyche.</p>
         <p>When you find an object, point your camera at it and click on it to learn more about the instrument it
             represents.</p>
         <p>Find all 6 to complete the challenge and learn about NASA's exciting mission to explore a metal-rich
             asteroid!</p>
         <button id="begin-button">BEGIN MISSION!</button>
-        <p>Please be aware you may experience lag during the experience due to the 3d models.</p>
         <p>Note: this was built for mobile</p>
     </div>
 
@@ -318,12 +316,12 @@
 
     <a-scene loading-screen="dotsColor: white; backgroundColor: black">
         <a-sky color="black" visible="false"></a-sky>
-        <a-entity raycaster="objects: [data-raycastable]" cursor></a-entity>
-        <a-camera id="camera" position="0 0 0">
-            <a-cursor fuse="true" fuse-timeout="500" geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.012"
+        <a-camera id="camera" raycaster="objects: [data-raycastable]" cursor="fuse: true; fuseTimeout: 10000">
+            <a-cursor geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.012"
                 material="color: white; shader: flat">
             </a-cursor>
         </a-camera>
+
 
         <!-- ASSET LOADING *preloads-->
         <a-assets>
@@ -440,7 +438,7 @@
 
 
         <!-- IMAGERS -->
-        <a-entity id="object1" cursor-listener gltf-model="#imagers-glb" scale="1 1 1" visible="false" data-raycastable
+        <a-entity id="object1" cursor-listener gltf-model="#imagers-glb" scale="1 1 1" visible="false" data-raycastable raycast-fix
             data-text="obj1" position="-3 1 -4"
             data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University."
             data-image="./assets/images/psyche-multispectral-imager.jpg.avif">
@@ -448,14 +446,14 @@
 
         <!-- SPECTROMETER -->
         <a-entity id="object2" cursor-listener obj-model="obj: #psyspectrometer; mtl: #psyspectrometer-mtl"
-            scale="0.75 0.75 0.75" visible="false" data-raycastable data-text="obj2" position="7 -3 16"
+            scale="0.75 0.75 0.75" visible="false" data-raycastable raycast-fix data-text="obj2" position="7 -3 16"
             data-popup-text="PSYCHE GAMMA-RAY AND NEUTRON SPECTROMETER<br><br>The Psyche spacecraft travels using solar-electric (low-thrust) propulsion. Solar electric propulsion uses electricity from solar arrays to create electromagnetic fields to accelerate and expel charged atoms (ions) of xenon to create a very low thrust with a very efficient use of propellant.[14] This will be the first use of Hall effect thrusters beyond lunar orbit."
             data-image="./assets/images/psyche-spectrometer.png">
         </a-entity>
 
         <!-- MAGNETOMETER-->
         <a-entity id="object3" cursor-listener obj-model="obj: #psymagnetometer; mtl: #psymagnetometer-mtl"
-            scale="0.75 0.75 0.75" position="-8 0 0" visible="false" data-raycastable data-text="obj3"
+            scale="0.75 0.75 0.75" position="-8 0 0" visible="false" data-raycastable raycast-fix data-text="obj3"
             data-popup-text="PSYCHE MAGNETOMETER<br><br>The Psyche Magnetometer is designed to detect and measure the remanent magnetic field of the asteroid. It is composed of two identical high-sensitivity magnetic field sensors located at the middle and outer end of a 6-foot (2-meter) boom. The team is based at Massachusetts Institute of Technology and Technical University of Denmark (DTU)."
             data-image="./assets/images/psyche-magnetometer.jpg.avif">
             <a-light type="point" color="#dbdbdb" intensity="7" distance="20"></a-light>
@@ -463,7 +461,7 @@
 
         <!-- DISH -->
         <a-entity id="object4" cursor-listener obj-model="obj: #dishtest; mtl: #dishtest-mtl" scale="0.75 0.75 0.75" w
-            position="13 7 4" visible="false" data-raycastable data-text="obj4"
+            position="13 7 4" visible="false" data-raycastable raycast-fix data-text="obj4"
             data-popup-text="RADIO SCIENCE<br><br>The Psyche mission will use the X-band radio telecommunications system to measure Psyche's gravity field to high precision. When combined with topography derived from onboard imagery, this will provide information on the interior structure of Psyche. The team is based at Massachusetts Institute of Technology and the Jet Propulsion Laboratory."
             data-image="./assets/images/psyche-radio-science.jpg.avif">
             <a-light type="point" color="#dbdbdb" intensity="7" distance="20" decay="1"></a-light>
@@ -471,14 +469,14 @@
 
         <!-- DSOC -->
         <a-entity id="object5" cursor-listener obj-model="obj: #psydsoc; mtl: #psydsoc-mtl" scale="1 1 1"
-            position="10 2 -5" visible="false" data-raycastable data-text="obj5"
+            position="10 2 -5" visible="false" data-raycastable raycast-fix data-text="obj5"
             data-popup-text="DEEP SPACE OPTICAL COMMUNICATION (DSOC)<br><br>The Psyche mission will test a sophisticated new laser communication technology that encodes data in photons (rather than radio waves) to communicate between a probe in deep space and Earth. Using light instead of radio allows the spacecraft to communicate more data in a given amount of time. The DSOC team is based at the Jet Propulsion Laboratory."
             data-image="./assets/images/psyche-dsoc.jpg.avif">
         </a-entity>
 
         <!-- SPACECRAFT -->
-        <a-entity id="object6" cursor-listener gltf-model="#spacecraft" scale="1 1 1" visible="false" data-raycastable
-            data-text="obj6" position="-20 20 23"
+        <a-entity id="object6" cursor-listener gltf-model="#spacecraft" scale="1 1 1" visible="false" data-raycastable raycast-fix
+            data-text="obj6" position="-20 20 23" 
             data-popup-text="PSYCHE SPACECRAFT<br><br>The Psyche spacecraft and solar panels, built by Maxar Technologies, are about the size of a singles tennis court. The body of the spacecraft is slightly bigger than a small van and about as tall as a regulation basketball hoop. The spacecraft includes a Gamma-Ray and Neutron Spectrometer, a Multispectral Imager, a Magnetometer and an x-band radio telecommunications system.<br><br>The Psyche mission is also testing a sophisticated new laser communication technology, called Deep Space Optical Communication, that encodes data in photons to communicate between a probe in deep space and Earth."
             data-image="./assets/images/Psyche_Mission_Chassis_a_210329.jpg.avif">
         </a-entity>
@@ -501,7 +499,6 @@
                     if (this.getAttribute('visible') == true) {
                         found++;
 
-                        document.querySelector('#found-text').setAttribute('value', 'Found: ' + found);
                         var popupText = this.getAttribute('data-popup-text');
                         var popupImage = this.getAttribute('data-image');
 
@@ -559,10 +556,15 @@
                     to: `${x} ${y + bounceHeight} ${z}`,
                     loop: true
                 });
+                sphere.setAttribute('animation__rotation', {
+                    property: 'rotation',
+                    to: '0 360 0',
+                    loop: true,
+                    dur: 15000,
+                    easing: 'linear'
+                });
+                
             });
-
-            // Show the found counter
-            document.querySelector('#found-text').setAttribute('visible', true);
         }
         // HIDE OBJS, BEGIN AND PLAY AGAIN
         document.addEventListener('DOMContentLoaded', function () {
@@ -617,6 +619,19 @@
                 });
             }
         });
+        //RAYCAST FIX
+            AFRAME.registerComponent('raycast-fix', {
+              init: function () {
+                this.el.addEventListener('model-loaded', () => {
+                  const mesh = this.el.getObject3D('mesh');
+                  if (!mesh) return;
+                  mesh.traverse((node) => {
+                    if (node.isMesh) node.raycast = THREE.Mesh.prototype.raycast;
+                  });
+                });
+              }
+            });
+            
     </script>
 </body>
 
