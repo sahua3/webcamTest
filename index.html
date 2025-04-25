@@ -293,7 +293,8 @@
         <p>Psyche Space Hunt Experience for the NASA Psyche Mission</p>
         <p>Created by: Ankita Sahu and Andre Smith</p>
         <p>3D Models by Andre Smith</p>
-        <p>Music by <a href="https://pixabay.com/music/ambient-calm-space-music-312291/" target="_blank">Claiver-Music</a></p>
+        <p>Music by <a href="https://pixabay.com/music/ambient-calm-space-music-312291/"
+                target="_blank">Claiver-Music</a></p>
         <p>PsycheVerse Team: Santiago Blanco, Adonias Daniel, Andre Smith, Ankita Sahu</p>
         <p>Academic Advisor: Rodrigo Spinola, Ph.D.</p>
         <p>Mentor: Cassie Bowman, Ed.D.</p>
@@ -317,11 +318,12 @@
 
     <a-scene loading-screen="dotsColor: white; backgroundColor: black">
         <a-sky color="black" visible="false"></a-sky>
-        <a-camera id="camera" raycaster="objects: [data-raycastable]" cursor="fuse: true">
-            <a-cursor geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.012"
-                material="color: white; shader: flat">
+        <a-camera id="camera" position="0 0 0">
+            <a-cursor id="cursor" geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.012"
+                material="color: white; shader: flat" raycaster="objects: [data-raycastable]">
             </a-cursor>
         </a-camera>
+
 
 
         <!-- ASSET LOADING *preloads-->
@@ -446,8 +448,8 @@
 
 
         <!-- IMAGERS -->
-        <a-entity id="object1" cursor-listener gltf-model="#imagers-glb" scale="1.25 1.25 1.25" visible="false" data-raycastable raycast-fix
-            data-text="obj1" position="-3 1 -4"
+        <a-entity id="object1" cursor-listener gltf-model="#imagers-glb" scale="1.25 1.25 1.25" visible="false"
+            data-raycastable raycast-fix data-text="obj1" position="-3 1 -4"
             data-popup-text="THE PSYCHE MULTISPECTRAL IMAGER<br><br>The Multispectral Imager provides high-resolution images using filters to discriminate between Psyche's metallic and silicate constituents. The instrument consists of a pair of identical cameras designed to acquire geologic, compositional, and topographic data. The purpose of the second camera is to provide redundancy for mission-critical optical navigation. The team is based at Arizona State University."
             data-image="./assets/images/psyche-multispectral-imager.jpg.avif">
         </a-entity>
@@ -483,8 +485,8 @@
         </a-entity>
 
         <!-- SPACECRAFT -->
-        <a-entity id="object6" cursor-listener gltf-model="#spacecraft" scale="1 1 1" visible="false" data-raycastable raycast-fix
-            data-text="obj6" position="-20 20 23" 
+        <a-entity id="object6" cursor-listener gltf-model="#spacecraft" scale="1 1 1" visible="false" data-raycastable
+            raycast-fix data-text="obj6" position="-20 20 23"
             data-popup-text="PSYCHE SPACECRAFT<br><br>The Psyche spacecraft and solar panels, built by Maxar Technologies, are about the size of a singles tennis court. The body of the spacecraft is slightly bigger than a small van and about as tall as a regulation basketball hoop. The spacecraft includes a Gamma-Ray and Neutron Spectrometer, a Multispectral Imager, a Magnetometer and an x-band radio telecommunications system.<br><br>The Psyche mission is also testing a sophisticated new laser communication technology, called Deep Space Optical Communication, that encodes data in photons to communicate between a probe in deep space and Earth."
             data-image="./assets/images/Psyche_Mission_Chassis_a_210329.jpg.avif">
         </a-entity>
@@ -571,7 +573,7 @@
                     dur: 15000,
                     easing: 'linear'
                 });
-                
+
             });
         }
         // HIDE OBJS, BEGIN AND PLAY AGAIN
@@ -629,18 +631,18 @@
             }
         });
         //RAYCAST FIX
-            AFRAME.registerComponent('raycast-fix', {
-              init: function () {
+        AFRAME.registerComponent('raycast-fix', {
+            init: function () {
                 this.el.addEventListener('model-loaded', () => {
-                  const mesh = this.el.getObject3D('mesh');
-                  if (!mesh) return;
-                  mesh.traverse((node) => {
-                    if (node.isMesh) node.raycast = THREE.Mesh.prototype.raycast;
-                  });
+                    const mesh = this.el.getObject3D('mesh');
+                    if (!mesh) return;
+                    mesh.traverse((node) => {
+                        if (node.isMesh) node.raycast = THREE.Mesh.prototype.raycast;
+                    });
                 });
-              }
-            });
-            
+            }
+        });
+
     </script>
 </body>
 
