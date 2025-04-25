@@ -267,8 +267,8 @@
             important instrument used to study the asteroid Psyche.</p>
         <p>When you find an object, point your camera at it and click on it to learn more about the instrument it
             represents.</p>
-        <p>Find all 6 to complete the challenge and learn about NASA's exciting mission to explore a metal-rich
-            asteroid!</p>
+        <p>Find all 6 to complete the challenge and learn about NASA's exciting mission to explore the metal-rich
+            asteroid Psyche!</p>
         <button id="begin-button">BEGIN MISSION!</button>
         <p>Note: this was built for mobile</p>
     </div>
@@ -293,6 +293,7 @@
         <p>Psyche Space Hunt Experience for the NASA Psyche Mission</p>
         <p>Created by: Ankita Sahu and Andre Smith</p>
         <p>3D Models by Andre Smith</p>
+        <p>Music by <a href="https://pixabay.com/music/ambient-calm-space-music-312291/" target="_blank">Claiver-Music</a></p>
         <p>PsycheVerse Team: Santiago Blanco, Adonias Daniel, Andre Smith, Ankita Sahu</p>
         <p>Academic Advisor: Rodrigo Spinola, Ph.D.</p>
         <p>Mentor: Cassie Bowman, Ed.D.</p>
@@ -354,6 +355,13 @@
             <a-asset-item id="psyspectrometer" src="assets/models/spectrometer/psyspec.obj"></a-asset-item>
             <a-asset-item id="psyspectrometer-mtl" src="assets/models/spectrometer/psyspec.mtl"></a-asset-item>
         </a-assets>
+
+        <!-- ROYALTY FREE MUSIC! :D -->
+        <a-assets>
+            <audio id="bg-music" src="assets/music/calm-space-music-312291.mp3"></audio>
+        </a-assets>
+
+        <a-sound id="bg-sound" src="#bg-music" autoplay="false" loop="true" volume="0.5"></a-sound>
 
         <!-- STARS -->
         <a-entity id="starfield">
@@ -574,6 +582,7 @@
             });
 
             document.getElementById('begin-button').addEventListener('click', function () {
+                document.querySelector('#bg-sound').components.sound.playSound();
                 document.getElementById('intro-panel').style.display = 'none';
                 setupBouncingSpheres();
             });
