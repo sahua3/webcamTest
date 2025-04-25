@@ -3,11 +3,11 @@
 
 <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script
         src="https://cdn.jsdelivr.net/npm/aframe-obj-loader-component@3.2.1/dist/aframe-obj-loader-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-outline@1.4.0/dist/aframe-outline.min.js"></script>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/KTX2Loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js"></script>
     <link
@@ -320,7 +320,7 @@
         <a-sky color="black" visible="false"></a-sky>
         <a-entity raycaster="objects: [data-raycastable]" cursor></a-entity>
         <a-camera id="camera" position="0 0 0">
-            <a-cursor fuse="true" geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.012"
+            <a-cursor fuse="true" fuse-timeout="500" geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.012"
                 material="color: white; shader: flat">
             </a-cursor>
         </a-camera>
